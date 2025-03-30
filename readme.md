@@ -1,3 +1,3 @@
 # Tetris Clone 
 
-A fun project to learn developing small games
+A fun project to learn developing small games using raylib
