@@ -1,6 +1,6 @@
-#include "block.cpp"
+#include "block.h"
 #include "position.h"
-//every block represented by a 3x3 small grid
+
 class LBlock : public Block {
 
 public:
@@ -8,10 +8,12 @@ public:
     id = 1;
 
     //the position of the Lblock for rotation states 0,1,2,3;
-    cells[0] = {Position(0,2), Position(1,0), Position(1,1), Position(1,2)};
-    cells[1] = {Position(0,1), Position(1,1), Position(2,1), Position(2,2)};
-    cells[2] = {Position(1,0), Position(1,1), Position(1,2), Position(2,0)};
-    cells[3] = {Position(0,0), Position(0,1), Position(1,1), Position(2,1)};
+    cells[0] = {Position(0,0), Position(0,1), Position(1,1), Position(2,1)};
+    cells[1] = {Position(0,2), Position(1,0), Position(1,1), Position(1,2)};
+    cells[2] = {Position(0,1), Position(1,1), Position(2,1), Position(2,2)};
+    cells[3] = {Position(1,0), Position(1,1), Position(1,2), Position(2,0)};
+
+    move(0,3);
 
   }
 
@@ -23,11 +25,12 @@ public:
   JBlock() {
     id = 2;
 
-    cells[0] = {Position(0,0), Position(1,0), Position(1,1), Position(1,2)};
-    cells[1] = {Position(0,1), Position(0,2), Position(1,1), Position(2,1)};
-    cells[2] = {Position(1,0), Position(1,1), Position(1,2), Position(2,2)};
-    cells[3] = {Position(0,1), Position(1,1), Position(2,0), Position(2,1)};
+    cells[0] = {Position(0,1), Position(1,1), Position(2,0), Position(2,1)};
+    cells[1] = {Position(0,0), Position(1,0), Position(1,1), Position(1,2)};
+    cells[2] = {Position(0,1), Position(0,2), Position(1,1), Position(2,1)};
+    cells[3] = {Position(1,0), Position(1,1), Position(1,2), Position(2,2)};
 
+    move(0,3);
   }
 
 };
@@ -39,10 +42,13 @@ public:
   IBlock() {
     id = 3;
 
-    cells[0] = {Position(1,0), Position(1,1), Position(1,2), Position(1,3)};
-    cells[1] = {Position(0,2), Position(1,2), Position(2,2), Position(3,2)};
-    cells[2] = {Position(2,0), Position(2,1), Position(2,2), Position(2,3)};
-    cells[3] = {Position(0,1), Position(1,1), Position(2,1), Position(3,1)};
+    cells[0] = {Position(0,1), Position(1,1), Position(2,1), Position(3,1)};
+    cells[1] = {Position(1,0), Position(1,1), Position(1,2), Position(1,3)};
+    cells[2] = {Position(0,2), Position(1,2), Position(2,2), Position(3,2)};
+    // cells[3] = {Position(2,0), Position(2,1), Position(2,2), Position(2,3)};
+    cells[3] = cells[0];
+
+    move(-1,3);
 
   }
 
@@ -60,6 +66,8 @@ public:
     cells[2] = {Position(0,0), Position(0,1), Position(1,0), Position(1,1)};
     cells[3] = {Position(0,0), Position(0,1), Position(1,0), Position(1,1)};
 
+    move(0,4);
+
   }
 
 };
@@ -71,11 +79,13 @@ public:
   SBlock() {
     id = 5;
 
-    cells[0] = {Position(0,1), Position(0,2), Position(1,0), Position(1,1)};
-    cells[1] = {Position(0,1), Position(1,1), Position(1,2), Position(2,2)};
-    cells[2] = {Position(1,1), Position(1,2), Position(2,0), Position(2,1)};
-    cells[3] = {Position(0,0), Position(1,0), Position(1,1), Position(2,1)};
+    cells[0] = {Position(0,0), Position(1,0), Position(1,1), Position(2,1)};
+    cells[1] = {Position(0,1), Position(0,2), Position(1,0), Position(1,1)};
+    // cells[2] = {Position(0,1), Position(1,1), Position(1,2), Position(2,2)};
+    cells[2] = cells[0];
+    cells[3] = {Position(1,1), Position(1,2), Position(2,0), Position(2,1)};
 
+    move(0,3);
   }
 
 };
@@ -87,11 +97,12 @@ public:
   TBlock() {
     id = 6;
 
-    cells[0] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(1, 2)};
-    cells[1] = {Position(0, 1), Position(1, 1), Position(1, 2), Position(2, 1)};
-    cells[2] = {Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 1)};
-    cells[3] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 1)};
+    cells[0] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 1)};
+    cells[1] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(1, 2)};
+    cells[2] = {Position(0, 1), Position(1, 1), Position(1, 2), Position(2, 1)};
+    cells[3] = {Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 1)};
 
+    move(0,3);
   }
 
 };
@@ -103,11 +114,13 @@ public:
   ZBlock() {
     id = 7;
 
-    cells[0] = {Position(0, 0), Position(0, 1), Position(1, 1), Position(1, 2)};
-    cells[1] = {Position(0, 2), Position(1, 1), Position(1, 2), Position(2, 1)};
-    cells[2] = {Position(1, 0), Position(1, 1), Position(2, 1), Position(2, 2)};
-    cells[3] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 0)};
+    cells[0] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 0)};
+    cells[1] = {Position(0, 0), Position(0, 1), Position(1, 1), Position(1, 2)};
+    // cells[2] = {Position(0, 2), Position(1, 1), Position(1, 2), Position(2, 1)};
+    cells[2] = cells[0];
+    cells[3] = {Position(1, 0), Position(1, 1), Position(2, 1), Position(2, 2)};
 
+    move(0,3);
   }
 
 };

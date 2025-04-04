@@ -2,7 +2,7 @@
 
 #include<vector>
 #include<map>
-#include "position.cpp"
+#include "position.h"
 #include "colors.h"
 
 class Block {
@@ -10,10 +10,14 @@ class Block {
 public:
   Block();
   void draw_block();
-  int id;//unique id for different blocks
+  void move(int rows, int columns);
+  std::vector<Position> getcellpositions();
+  int id;
+  int row_offset;
+  int column_offset;
   std::map<int,std::vector<Position>> cells;
 
-private:
+protected:
   int cellsize;
   int rot_state;
   std::vector<Color> colors;
