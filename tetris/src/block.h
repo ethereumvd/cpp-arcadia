@@ -11,11 +11,14 @@ public:
   Block();
   void draw_block();
   void move(int rows, int columns);
+  void rotate();
+  void undo_rotate();
   std::vector<Position> getcellpositions();
   int id;
   int row_offset;
   int column_offset;
   std::map<int,std::vector<Position>> cells;
+
 
 protected:
   int cellsize;

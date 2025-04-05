@@ -43,55 +43,86 @@ void Game::handle_input() {
   switch(keypressed) 
   {
     case KEY_LEFT:
-      moveblockleft();
+      move_block_left();
       break;
     case KEY_RIGHT:
-      moveblockright();
+      move_block_right();
       break;
     case KEY_DOWN:
-      moveblockdown();
+      move_block_down();
+      break;
+    case KEY_UP:
+      rotate_block();
       break;
   }
  
 }
 
-void Game::moveblockleft() {
+void Game::move_block_left() {
 
   curr_block.move(0,-1);
-  if(isblockoutside()) {
+  if(is_block_outside()) {
     curr_block.move(0,1);
   }
   
 }
-void Game::moveblockright() {
+void Game::move_block_right() {
 
   curr_block.move(0,1);
-  if(isblockoutside()) {
+  if(is_block_outside()) {
     curr_block.move(0,-1);
   }
   
 }
-void Game::moveblockdown() {
+void Game::move_block_down() {
 
   curr_block.move(1,0);
-  if(isblockoutside()) {
+  if(is_block_outside()) {
     curr_block.move(-1,0);
   }
   
 }
 
-bool Game::isblockoutside() {
+bool Game::is_block_outside() {
   std::vector<Position> tiles = curr_block.getcellpositions();
 
   for(Position item:tiles) {
     
-    if(grid.iscelloutside(item.row, item.column)) {
+    if(grid.iscelloutside(item.row, item.column)) return true;
 
-      return true;
+  }
+  return false;
+}
+
+void Game::rotate_block() {
+
+  curr_block.rotate();
+
+  // if(is_block_outside()) {
+  //
+  //   curr_block.undo_rotate();
+  //
+  // }
+  
+  //wall kicks like srs (super rotation system)
+  if(is_block_outside()) {
+
+    curr_block.move(0,-1);//try to shift left by 1
+
+    if(is_block_outside()) {
+      
+      curr_block.move(0,2); //try to shift right by 2
+
+      if(is_block_outside()) {
+
+        curr_block.move(0,-1); //revert to original position
+        curr_block.undo_rotate(); //still not valid then undo rotation
+
+      }
 
     }
 
   }
-  return false;
+
 }
 

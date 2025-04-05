@@ -43,16 +43,15 @@ std::vector<Position> Block::getcellpositions() {
 
 }
 
+void Block::rotate() {
 
-// std::vector<Position> Block::getcellpositions()
-// {
-//     std::vector<Position> tiles = cells[rot_state];
-//     std::vector<Position> movedTiles;
-//     for (Position item : tiles)
-//     {
-//         Position newPos = Position(item.row + row_offset, item.column + column_offset);
-//         movedTiles.push_back(newPos);
-//     }
-//     return movedTiles;
-// }
+  rot_state = ( rot_state + 1 ) % 4 ;
+
+}
+
+void Block::undo_rotate() {
+
+  rot_state = (rot_state - 1 ) % 4 ;
+
+}
 

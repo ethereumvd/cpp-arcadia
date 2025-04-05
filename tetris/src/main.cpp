@@ -19,10 +19,10 @@ int main() {
   
   while(WindowShouldClose() == false) {
 
+    game.handle_input();
     BeginDrawing();
     ClearBackground(darkblue);
     game.draw();
-    game.handle_input();
     EndDrawing();
 
   }

@@ -12,12 +12,13 @@ public:
   std::vector<Block> getallblocks();
   void draw();
   void handle_input();
-  void moveblockleft();
-  void moveblockright();
-  void moveblockdown();
+  void move_block_left();
+  void move_block_right();
+  void move_block_down();
+  void rotate_block();
 
 private:
-  bool isblockoutside();
+  bool is_block_outside();
   std::vector<Block> blocks;
   Block curr_block;
   Block next_block;
