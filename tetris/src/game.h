@@ -16,6 +16,9 @@ public:
   void move_block_right();
   void move_block_down();
   void rotate_block();
+  bool game_over;
+  int score;
+  void update_score(int lines_cleared, int moved_down_points);
 
 private:
   bool is_block_outside();
@@ -24,6 +27,6 @@ private:
   std::vector<Block> blocks;
   Block curr_block;
   Block next_block;
-  
+  void reset();
 
 };

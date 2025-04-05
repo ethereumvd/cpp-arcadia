@@ -7,12 +7,13 @@ class Grid {
 
 public:
   Grid();
-  // void Init();
+  void Initialise();
   int grid[20][10];
   void draw_grid();
   bool iscelloutside(int row, int column);
   bool iscellempty(int row, int column);
   int clear_complete_rows();
+
 
 private:
   bool is_row_complete(int num_row);

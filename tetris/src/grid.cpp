@@ -7,6 +7,20 @@ Grid::Grid() {
   num_cols = 10;
   cellsize = 45;//30 pixels
   colors = getcellcolors();
+  // for(int row = 0; row < num_rows; row++) {
+  //
+  //   for(int col = 0; col < num_cols; col++) {
+  //
+  //     grid[row][col] = 0;
+  //
+  //   }
+  //
+  // }
+  Initialise();
+}
+
+void Grid::Initialise() {
+
   for(int row = 0; row < num_rows; row++) {
 
     for(int col = 0; col < num_cols; col++) {
@@ -16,6 +30,7 @@ Grid::Grid() {
     }
 
   }
+
 }
 
 void Grid::draw_grid() {
@@ -25,7 +40,7 @@ void Grid::draw_grid() {
 
       int cell_col = grid[row][col];
     
-      DrawRectangle(col * cellsize + 1, row * cellsize + 1, cellsize - 1, cellsize - 1, colors[cell_col]);
+      DrawRectangle(col * cellsize + 11, row * cellsize + 11, cellsize - 1, cellsize - 1, colors[cell_col]);
       
 
     }
@@ -83,17 +98,17 @@ void Grid::clear_row(int row) {
 //   }
 //
 // }
-void Grid::move_row_down(int row, int num_rows) {
-  int target_row = row + num_rows;
-
-  if (target_row >= num_rows) return;  // don’t overflow
-
-  for (int col = 0; col < num_cols; col++) {
-    grid[row + num_rows-1][col] = grid[row][col]; // move current row down
-    grid[row][col] = 0;                          // clear current row
-  }
-}
-
+// void Grid::move_row_down(int row, int num_rows) {
+//   int target_row = row + num_rows;
+//
+//   if (target_row >= num_rows) return;  
+//
+//   for (int col = 0; col < num_cols; col++) {
+//     grid[row + num_rows-1][col] = grid[row][col]; // move current row down
+//     grid[row][col] = 0;                          // clear current row
+//   }
+// }
+//
 int Grid::clear_complete_rows() {
 
   int cnt = 0;
@@ -121,4 +136,3 @@ int Grid::clear_complete_rows() {
 
   return cnt;//to calculate score later on
 }
-

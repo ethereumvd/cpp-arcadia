@@ -8,6 +8,8 @@ Game::Game() {
   blocks = getallblocks();
   curr_block = getrandomblock();
   next_block = getrandomblock();
+  game_over = false;
+  score = 0;
 
 }
 
@@ -39,6 +41,13 @@ void Game::draw() {
 void Game::handle_input() {
 
   int keypressed = GetKeyPressed();
+  if(game_over && keypressed != 0) {
+
+    //todo when game is over instantly clear the screen and wait for user input 
+    game_over = false;
+    reset();
+
+  }
 
   switch(keypressed) 
   {
@@ -50,6 +59,7 @@ void Game::handle_input() {
       break;
     case KEY_DOWN:
       move_block_down();
+      update_score(0, 1);
       break;
     case KEY_UP:
       rotate_block();
@@ -60,34 +70,40 @@ void Game::handle_input() {
 
 void Game::move_block_left() {
 
-  curr_block.move(0,-1);
-  if(is_block_outside() || !block_fits()) {
-    
-    curr_block.move(0,1);
-    if(!block_fits()) lock_block();
+  if(!game_over) {
+    curr_block.move(0,-1);
+    if(is_block_outside() || !block_fits()) {
+      
+      curr_block.move(0,1);
+      if(!block_fits()) lock_block();
 
+    }
   }
   
 }
 void Game::move_block_right() {
 
-  curr_block.move(0,1);
-  if(is_block_outside() || !block_fits()) {
+  if(!game_over) {
+    curr_block.move(0,1);
+    if(is_block_outside() || !block_fits()) {
 
-    curr_block.move(0,-1);
-    if(!block_fits()) lock_block();
+      curr_block.move(0,-1);
+      if(!block_fits()) lock_block();
 
+    }
   }
   
 }
 void Game::move_block_down() {
 
-  curr_block.move(1,0);
-  if(is_block_outside() || !block_fits()) {
+  if(!game_over) {
+    curr_block.move(1,0);
+    if(is_block_outside() || !block_fits()) {
 
-    curr_block.move(-1,0);
-    lock_block();
+      curr_block.move(-1,0);
+      lock_block();
 
+    }
   }
   
 }
@@ -105,32 +121,35 @@ bool Game::is_block_outside() {
 
 void Game::rotate_block() {
 
-  curr_block.rotate();
 
-  // if(is_block_outside()) {
-  //
-  //   curr_block.undo_rotate();
-  //
-  // }
-  
-  //wall kicks like srs (super rotation system)
-  if(is_block_outside() || !block_fits()) {
+  if(!game_over) {
+    curr_block.rotate();
 
-    curr_block.move(0,-1);//try to shift left by 1
-
+    // if(is_block_outside()) {
+    //
+    //   curr_block.undo_rotate();
+    //
+    // }
+    
+    //wall kicks like srs (super rotation system)
     if(is_block_outside() || !block_fits()) {
-      
-      curr_block.move(0,2); //try to shift right by 2
 
-      if(is_block_outside() || !block_fits()){
+      curr_block.move(0,-1);//try to shift left by 1
 
-        curr_block.move(0,-1); //revert to original position
-        curr_block.undo_rotate(); //still not valid then undo rotation
+      if(is_block_outside() || !block_fits()) {
+        
+        curr_block.move(0,2); //try to shift right by 2
+
+        if(is_block_outside() || !block_fits()){
+
+          curr_block.move(0,-1); //revert to original position
+          curr_block.undo_rotate(); //still not valid then undo rotation
+
+        }
 
       }
 
     }
-
   }
 
 }
@@ -144,9 +163,11 @@ void Game::lock_block() {
 
   }
   curr_block = next_block;
+  if(!block_fits()) game_over = true;
   next_block = getrandomblock();
 
   int score = grid.clear_complete_rows();
+  update_score(score, 0);
 
 }
 
@@ -166,3 +187,30 @@ bool Game::block_fits() {
   return true;
 }
 
+void Game::reset() {
+
+  grid.Initialise();
+  score = 0;
+
+}
+
+void Game::update_score(int lines_cleared, int move_down_points) {
+
+  switch(lines_cleared) 
+  {
+    case 1:
+      score += 100;
+      break;
+    case 2:
+      score += 300;
+      break;
+    case 3:
+      score += 500;
+      break;
+    default:
+      break;
+  }
+  
+  score += move_down_points;
+
+}
