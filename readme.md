@@ -1,3 +1,3 @@
-# Tetris Clone 
+# CPP - Arcadia
 
-A fun project to learn developing small games using raylib
+A fun project to learn developing games with raylib
