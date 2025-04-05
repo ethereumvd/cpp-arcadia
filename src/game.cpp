@@ -1,12 +1,12 @@
 #include "game.h"
 #include<cstdlib>
+#include <raylib.h>
 
 Game::Game() {
 
   grid = Grid();
   blocks = getallblocks();
   curr_block = getrandomblock();
-  // curr_block = IBlock();
   next_block = getrandomblock();
 
 }
@@ -35,3 +35,63 @@ void Game::draw() {
   curr_block.draw_block();
 
 }
+
+void Game::handle_input() {
+
+  int keypressed = GetKeyPressed();
+
+  switch(keypressed) 
+  {
+    case KEY_LEFT:
+      moveblockleft();
+      break;
+    case KEY_RIGHT:
+      moveblockright();
+      break;
+    case KEY_DOWN:
+      moveblockdown();
+      break;
+  }
+ 
+}
+
+void Game::moveblockleft() {
+
+  curr_block.move(0,-1);
+  if(isblockoutside()) {
+    curr_block.move(0,1);
+  }
+  
+}
+void Game::moveblockright() {
+
+  curr_block.move(0,1);
+  if(isblockoutside()) {
+    curr_block.move(0,-1);
+  }
+  
+}
+void Game::moveblockdown() {
+
+  curr_block.move(1,0);
+  if(isblockoutside()) {
+    curr_block.move(-1,0);
+  }
+  
+}
+
+bool Game::isblockoutside() {
+  std::vector<Position> tiles = curr_block.getcellpositions();
+
+  for(Position item:tiles) {
+    
+    if(grid.iscelloutside(item.row, item.column)) {
+
+      return true;
+
+    }
+
+  }
+  return false;
+}
+

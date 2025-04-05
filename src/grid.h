@@ -7,9 +7,10 @@ class Grid {
 
 public:
   Grid();
-  void Init();
+  // void Init();
   int grid[20][10];
   void draw_grid();
+  bool iscelloutside(int row, int column);
 
 private:
   int num_rows;

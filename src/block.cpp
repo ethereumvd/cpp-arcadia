@@ -5,6 +5,8 @@ Block::Block() {
 
   cellsize = 45;
   rot_state = 0;
+  row_offset = 0;
+  column_offset = 0;
   colors = getcellcolors();
 
 }
@@ -14,13 +16,13 @@ void Block::draw_block() {
   std::vector<Position> tiles = getcellpositions();
 
   for(Position pos : tiles) {
-    DrawRectangle(pos.row * cellsize + 1, pos.column * cellsize + 1, cellsize - 1, cellsize - 1, colors[id] );
+    DrawRectangle(pos.column* cellsize + 1, pos.row * cellsize + 1, cellsize - 1, cellsize - 1, colors[id] );
 
   }
   
 }
 
-void Block::move(int columns, int rows) {
+void Block::move(int rows, int columns) {
 
   row_offset += rows;
   column_offset += columns;

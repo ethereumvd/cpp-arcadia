@@ -40,10 +40,7 @@ void Grid::draw_grid() {
       // std::cout << "ddddddddd\n";
     
       int cell_col = grid[row][col];
-      // if (cell_col < 0 || cell_col >= (int)colors.size()) {
-      //     std::cerr << "Invalid color index: " << cell_col << std::endl;
-      //     cell_col = 0;  // Default to a safe color
-      // }
+    
       DrawRectangle(col * cellsize + 1, row * cellsize + 1, cellsize - 1, cellsize - 1, colors[cell_col]);
       
 
@@ -52,6 +49,14 @@ void Grid::draw_grid() {
   }
 }
 
+bool Grid::iscelloutside(int row, int column) {
+
+  if(row >= 0 && row < num_rows && column >= 0 && column < num_cols ) {
+    return false;
+  } 
+  return true;
+
+}
 
 
 
