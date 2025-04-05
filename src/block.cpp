@@ -29,28 +29,30 @@ void Block::move(int rows, int columns) {
 
 }
 
-// std::vector<Position> Block::getcellpositions() {
-//
-//   std::vector<Position> newposition = cells[rot_state]; 
-//
-//   for(Position &pos : newposition) {
-//     pos.row += row_offset;
-//     pos.column += column_offset;
-//   }
-//
-//   return newposition;
-//
-// }
-//
-std::vector<Position> Block::getcellpositions()
-{
-    std::vector<Position> tiles = cells[rot_state];
-    std::vector<Position> movedTiles;
-    for (Position item : tiles)
-    {
-        Position newPos = Position(item.row + row_offset, item.column + column_offset);
-        movedTiles.push_back(newPos);
-    }
-    return movedTiles;
+//my implementation
+std::vector<Position> Block::getcellpositions() {
+
+  std::vector<Position> newposition = cells[rot_state]; 
+
+  for(Position &pos : newposition) {
+    pos.row += row_offset;
+    pos.column += column_offset;
+  }
+
+  return newposition;
+
 }
+
+
+// std::vector<Position> Block::getcellpositions()
+// {
+//     std::vector<Position> tiles = cells[rot_state];
+//     std::vector<Position> movedTiles;
+//     for (Position item : tiles)
+//     {
+//         Position newPos = Position(item.row + row_offset, item.column + column_offset);
+//         movedTiles.push_back(newPos);
+//     }
+//     return movedTiles;
+// }
 
