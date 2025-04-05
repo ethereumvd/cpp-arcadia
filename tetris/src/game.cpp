@@ -34,7 +34,19 @@ std::vector<Block> Game::getallblocks() {
 void Game::draw() {
 
   grid.draw_grid();
-  curr_block.draw_block();
+  curr_block.draw_block(11,11);
+  switch(next_block.id) 
+  {
+    case 3:
+      next_block.draw_block(380,480);
+      break;
+    case 4:
+      next_block.draw_block(380,460);
+      break;
+    default:
+      next_block.draw_block(400,450);
+      break;
+  }
 
 }
 

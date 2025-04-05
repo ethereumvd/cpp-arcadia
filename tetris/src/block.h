@@ -9,7 +9,7 @@ class Block {
 
 public:
   Block();
-  void draw_block();
+  void draw_block(int offset_x, int offset_y);
   void move(int rows, int columns);
   void rotate();
   void undo_rotate();
