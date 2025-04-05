@@ -61,24 +61,33 @@ void Game::handle_input() {
 void Game::move_block_left() {
 
   curr_block.move(0,-1);
-  if(is_block_outside()) {
+  if(is_block_outside() || !block_fits()) {
+    
     curr_block.move(0,1);
+    if(!block_fits()) lock_block();
+
   }
   
 }
 void Game::move_block_right() {
 
   curr_block.move(0,1);
-  if(is_block_outside()) {
+  if(is_block_outside() || !block_fits()) {
+
     curr_block.move(0,-1);
+    if(!block_fits()) lock_block();
+
   }
   
 }
 void Game::move_block_down() {
 
   curr_block.move(1,0);
-  if(is_block_outside()) {
+  if(is_block_outside() || !block_fits()) {
+
     curr_block.move(-1,0);
+    lock_block();
+
   }
   
 }
@@ -105,15 +114,15 @@ void Game::rotate_block() {
   // }
   
   //wall kicks like srs (super rotation system)
-  if(is_block_outside()) {
+  if(is_block_outside() || !block_fits()) {
 
     curr_block.move(0,-1);//try to shift left by 1
 
-    if(is_block_outside()) {
+    if(is_block_outside() || !block_fits()) {
       
       curr_block.move(0,2); //try to shift right by 2
 
-      if(is_block_outside()) {
+      if(is_block_outside() || !block_fits()){
 
         curr_block.move(0,-1); //revert to original position
         curr_block.undo_rotate(); //still not valid then undo rotation
@@ -124,5 +133,36 @@ void Game::rotate_block() {
 
   }
 
+}
+
+void Game::lock_block() {
+
+  std::vector<Position> tiles = curr_block.getcellpositions();
+  for(Position pos:tiles) {
+
+    grid.grid[pos.row][pos.column] = curr_block.id;
+
+  }
+  curr_block = next_block;
+  next_block = getrandomblock();
+
+  int score = grid.clear_complete_rows();
+
+}
+
+bool Game::block_fits() {
+
+  std::vector<Position> tiles = curr_block.getcellpositions();
+
+  for(Position pos:tiles) {
+
+    if(!grid.iscellempty(pos.row, pos.column)) {
+
+      return false;
+
+    }
+
+  }
+  return true;
 }
 

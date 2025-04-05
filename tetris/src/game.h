@@ -19,6 +19,8 @@ public:
 
 private:
   bool is_block_outside();
+  void lock_block();
+  bool block_fits();
   std::vector<Block> blocks;
   Block curr_block;
   Block next_block;
