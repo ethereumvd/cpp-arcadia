@@ -1,7 +1,7 @@
 #include "raylib.h"
-#include "game.h"
-#include "colors.h"
-#include <iostream>
+#include "../headers/game.h"
+#include "../headers/colors.h"
+#include <cstdio>
 
 const int win_width = 450;
 const int win_height = 900;

@@ -1,4 +1,4 @@
-#include "colors.h"
+#include "../headers/colors.h"
 
 const Color darkgrey = {26, 31, 40, 255};
 const Color green = {47, 230, 23, 255};

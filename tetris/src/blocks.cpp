@@ -1,5 +1,5 @@
-#include "block.h"
-#include "position.h"
+#include "../headers/block.h"
+#include "../headers/position.h"
 
 class LBlock : public Block {
 

@@ -1,4 +1,4 @@
-#include "position.h"
+#include "../headers/position.h"
 
 Position::Position(int row, int column) {
 

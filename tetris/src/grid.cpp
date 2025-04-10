@@ -1,6 +1,6 @@
-#include "grid.h"
+#include "../headers/grid.h"
 #include "raylib.h"
-#include "colors.h"
+#include "../headers/colors.h"
 
 Grid::Grid() {
   num_rows = 20;

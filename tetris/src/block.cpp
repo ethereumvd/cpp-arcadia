@@ -1,4 +1,4 @@
-#include "block.h"
+#include "../headers/block.h"
 #include "raylib.h"
 
 Block::Block() {

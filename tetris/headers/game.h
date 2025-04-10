@@ -1,7 +1,7 @@
 #pragma once
 
 #include "grid.h"
-#include "blocks.cpp"
+#include "../src/blocks.cpp"
   
 class Game {
 
