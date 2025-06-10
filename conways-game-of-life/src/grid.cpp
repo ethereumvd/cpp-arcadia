@@ -1,9 +1,10 @@
 #include "../headers/grid.h"
 #include "raylib.h"
+#include "../headers/colors.h"
 #include "cstdlib"
 
-Color alive_color = Color{0, 255, 0, 255};
-Color ded_color = Color{55, 55, 55, 255};
+Color alive_color = darkblue;
+Color ded_color = BLACK; 
 
 Grid::Grid(int width, int height , int cellsize){
 

@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "../headers/colors.h"
 #include "../headers/sim.h"
 
 const int win_height = 1000;
@@ -57,7 +58,7 @@ int main() {
 
     simulate.update_state();
     BeginDrawing();
-    ClearBackground(grey);
+    ClearBackground(darkgrey);
     simulate.Draw();
     EndDrawing();
 
