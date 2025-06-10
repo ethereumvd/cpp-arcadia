@@ -6,7 +6,6 @@ tetris/bin/
 build/CMakeFiles/
 build/CMakeCache.txt
 build/cmake_install.cmake
-build/Makefile
 build/conways-game-of-life/
 build/pong/
 build/snake/
