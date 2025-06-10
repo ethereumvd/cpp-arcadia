@@ -11,6 +11,8 @@ A small collection of classic games and visualizations built with **[raylib](htt
 
 All four projects share the same toolchain and build together with **CMake** into a single `build/bin/` directory.
 
+- For details about game controls, see [controls.md](https://github.com/ethereumvd/cpp-arcadia/blob/main/controls.md).
+
 
 ## ✨ Features
 
