@@ -2,3 +2,17 @@ conways-game-of-life/bin/
 pong/bin/
 snake/bin/
 tetris/bin/
+
+build/CMakeFiles/
+build/CMakeCache.txt
+build/cmake_install.cmake
+build/Makefile
+build/conways-game-of-life/
+build/pong/
+build/snake/
+build/tetris/
+
+
+*.o
+*.out
+*.exe
