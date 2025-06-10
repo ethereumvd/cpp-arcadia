@@ -1,6 +1,6 @@
 CXX       := g++           
 CXXFLAGS  := -Wall -std=c++17
-LDLIBS    := -lraylib -lGL -lm -lpthread -ldl -lrt -lX11  
+RLIBS    := -lraylib -lGL -lm -lpthread -ldl -lrt -lX11  
 
 SRC       := main.cpp      
 TARGET    := bin/pong     
@@ -8,7 +8,7 @@ TARGET    := bin/pong
 all: $(TARGET)
 
 $(TARGET): $(SRC) | bin
-	$(CXX) $(CXXFLAGS) $< -o $@ $(LDLIBS)
+	$(CXX) $(CXXFLAGS) $< -o $@ $(RLIBS)
 
 bin:                  
 	mkdir -p bin
